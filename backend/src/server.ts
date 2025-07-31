@@ -9,8 +9,12 @@ app.register(fastifyCors, {
   origin: 'http://localhost:5173',
 });
 
-app.setSerializerCompiler(serializerCompiler);
 app.setValidatorCompiler(validatorCompiler);
+app.setSerializerCompiler(serializerCompiler);
+
+app.get('/health', (req, res) => {
+  res.send('Deu certo!');
+});
 
 app.listen({ port: env.PORT }).then(() => {
   console.log(`Port:  ${process.env.PORT}`);

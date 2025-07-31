@@ -12,10 +12,12 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@biomejs/biome": "2.1.2",
     "@types/node": "^24.0.10",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.3",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "ultracite": "5.1.2"
   },
   "dependencies": {
     "@fastify/cors": "^11.0.1",

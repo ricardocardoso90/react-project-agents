@@ -9,3 +9,6 @@ services:
       - 5432:5432
     volumes:
       - ./docker/setup.sql:/docker-entrypoint-initdb.d/setup.sql
+
+
+# PARA INICIALIZAR O BANCO DE DADOS => docker compose up -d

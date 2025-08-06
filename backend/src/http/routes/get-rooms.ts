@@ -6,7 +6,10 @@ import { schema } from "../../db/schema/index.ts";
 export function getRoomsRoute(app: FastifyInstance) {
   app.get("/rooms", async () => {
     const result = await db
-      .select()
+      .select({
+        id: schema.rooms.id,
+        name: schema.rooms.name,
+      })
       .from(schema.rooms)
       .orderBy(schema.rooms.name);
 

@@ -8,3 +8,14 @@ GET {{baseUrl}}/health
 
 # GET ROOMS
 GET {{baseUrl}}/rooms
+
+###
+
+# CREATE ROOM
+POST {{baseUrl}}/rooms
+Content-Type: application/json
+
+{
+  "name": "Ricardo",
+  "description": "Desenvolvedor Front-End"
+}

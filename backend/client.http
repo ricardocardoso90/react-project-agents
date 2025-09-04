@@ -32,3 +32,14 @@ Content-Type: application/json
 # GET ROOM QUESTIONS
 # @name getRoomsQuestions
 GET {{baseUrl}}/rooms/{{roomId}}/questions
+
+###
+
+# CREATE QUESTION
+# @name createQuestion
+POST {{baseUrl}}/rooms/{{roomId}}/questions
+Content-Type: application/json
+
+{
+  "question": "Qual o nome do personagem principal do filme Avatar?",
+}

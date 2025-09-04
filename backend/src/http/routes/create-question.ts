@@ -23,13 +23,13 @@ export function createQuestionRoute(app: FastifyInstance) {
       question
     }).returning();
 
-    const insertedRoom = result[0];
+    const insertedQuestion = result[0];
 
-    if (!insertedRoom) {
+    if (!insertedQuestion) {
       throw new Error("Failed to create new room.");
     };
 
-    return reply.status(201).send({ roomId: insertedRoom.id })
+    return reply.status(201).send({ roomId: insertedQuestion.id })
 
   });
 };

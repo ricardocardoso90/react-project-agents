@@ -1,24 +1,30 @@
-import { reset, seed } from "drizzle-seed";
-
 import { db, sql } from "./connection.ts";
 import { schema } from "./schema/index.ts";
 
-await reset(db, schema);
+// Truncate tables in correct order due to FK
+await sql`TRUNCATE TABLE "questions" RESTART IDENTITY CASCADE`;
+await sql`TRUNCATE TABLE "rooms" RESTART IDENTITY CASCADE`;
 
-await seed(db, schema).refine((f) => {
-  return {
-    rooms: {
-      count: 10,
-      columns: {
-        name: f.companyName(),
-        description: f.loremIpsum(),
-      },
-      with: {
-        questions: 5,
-      },
-    }
-  }
-});
+// Insert rooms
+const createdRooms = await Promise.all(
+  Array.from({ length: 10 }).map(async (_, index) => {
+    const [room] = await db.insert(schema.rooms).values({
+      name: `Room ${index + 1}`,
+      description: `Description for room ${index + 1}`,
+    }).returning();
+    return room;
+  })
+);
+
+// Insert questions per room
+for (const room of createdRooms) {
+  await Promise.all(
+    Array.from({ length: 5 }).map((_, qIndex) => db.insert(schema.questions).values({
+      roomId: room.id,
+      question: `Question ${qIndex + 1} for room ${room.name}`,
+    }))
+  );
+}
 
 await sql.end();
 

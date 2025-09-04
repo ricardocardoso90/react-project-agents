@@ -7,7 +7,7 @@ type RoomParams = {
 export function Room() {
   const { id } = useParams<RoomParams>();
 
-  !id && <Navigate replace to="/" />
+  if (!id) return <Navigate replace to="/" />
 
   return (
     <div>

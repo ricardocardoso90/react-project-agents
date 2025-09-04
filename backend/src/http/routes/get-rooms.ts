@@ -6,7 +6,7 @@ import { schema } from "../../db/schema/index.ts";
 
 export function getRoomsRoute(app: FastifyInstance) {
   app.get("/rooms", async () => {
-    const results = await db
+    const rows = await db
       .select({
         id: schema.rooms.id,
         name: schema.rooms.name,
@@ -18,6 +18,9 @@ export function getRoomsRoute(app: FastifyInstance) {
       .groupBy(schema.rooms.id)
       .orderBy(schema.rooms.name);
 
-    return results;
+    return rows.map((row) => ({
+      ...row,
+      questionsCount: Number(row.questionsCount ?? 0),
+    }));
   });
 };

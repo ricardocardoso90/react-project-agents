@@ -1,4 +1,4 @@
-import { z } from "zod/v4";
+import { z } from "zod";
 import { desc, eq } from "drizzle-orm";
 import type { FastifyInstance } from "fastify";
 

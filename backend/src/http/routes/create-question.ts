@@ -1,4 +1,4 @@
-import { z } from "zod/v4";
+import { z } from "zod";
 import { db } from "../../db/connection.ts";
 
 import type { FastifyInstance } from "fastify";

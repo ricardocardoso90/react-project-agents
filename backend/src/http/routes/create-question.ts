@@ -14,22 +14,26 @@ export function createQuestionRoute(app: FastifyInstance) {
         question: z.string().min(1),
       }),
     },
-  }, async ({ body }, reply) => {
-    const { roomId } = body as { roomId: string };
-    const { question } = body as { question: string };
+  }, async (request, reply) => {
+    const { roomId } = request.params as { roomId: string };
+    const { question } = request.body as { question: string };
 
-    const result = await db.insert(schema.questions).values({
-      roomId,
-      question
-    }).returning();
+    try {
+      const result = await db.insert(schema.questions).values({
+        roomId,
+        question
+      }).returning();
 
-    const insertedQuestion = result[0];
+      const insertedQuestion = result[0];
 
-    if (!insertedQuestion) {
-      throw new Error("Failed to create new room.");
-    };
+      if (!insertedQuestion) {
+        throw new Error("Failed to create new question.");
+      }
 
-    return reply.status(201).send({ roomId: insertedQuestion.id })
-
+      return reply.status(201).send({ question: insertedQuestion });
+    } catch (err) {
+      console.error(err);
+      return reply.status(500).send({ error: "Internal Server Error" });
+    }
   });
 };

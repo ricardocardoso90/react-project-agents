@@ -25,7 +25,7 @@ Content-Type: application/json
 
 ###
 
-@roomId = {{ createRoom.response.body.$.roomId }}
+@roomId = {{createRoom.response.body.$.roomId}}
 
 ###
 
@@ -41,5 +41,5 @@ POST {{baseUrl}}/rooms/{{roomId}}/questions
 Content-Type: application/json
 
 {
-  "question": "Qual o nome do personagem principal do filme Avatar?",
+  "question": "Qual o nome do personagem principal do filme Avatar?"
 }

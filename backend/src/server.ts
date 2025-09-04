@@ -11,7 +11,8 @@ import { createQuestionRoute } from "./http/routes/create-question.ts";
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
 app.register(fastifyCors, {
-  origin: 'http://localhost:5173',
+  origin: true,
+  methods: ["GET", "POST", "OPTIONS"],
 });
 
 app.setValidatorCompiler(validatorCompiler);

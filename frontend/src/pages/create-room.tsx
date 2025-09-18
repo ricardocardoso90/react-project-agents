@@ -1,23 +1,23 @@
 import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 
-type GetRoomsAPIResponse = {
-  id: string;
-  name: string;
-};
+// type GetRoomsAPIResponse = {
+//   id: string;
+//   name: string;
+// };
 
 export function CreateRoom() {
-  const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["get-rooms"],
-    queryFn: async () => {
-      const response = await fetch("http://localhost:3333/rooms");
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
-      const data: GetRoomsAPIResponse[] = await response.json();
-      return data;
-    },
-  });
+  // const { data, isLoading, isError, error } = useQuery({
+  //   queryKey: ["get-rooms"],
+  //   queryFn: async () => {
+  //     const response = await fetch("http://localhost:3333/rooms");
+  //     if (!response.ok) {
+  //       throw new Error(`HTTP ${response.status}`);
+  //     }
+  //     const data: GetRoomsAPIResponse[] = await response.json();
+  //     return data;
+  //   },
+  // });
 
   return (
     <div>

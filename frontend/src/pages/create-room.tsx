@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 
+import { ArrowRight } from "lucide-react";
+
 type GetRoomsAPIResponse = {
   id: string;
   name: string;
+  questionsCount: number;
+  createdAt: number;
 };
 
 export function CreateRoom() {
@@ -34,11 +38,15 @@ export function CreateRoom() {
 
             <CardContent className="flex flex-col gap-3">
               {data?.map((room) => (
-                <div key={room.id}>
-                  <div>
-
+                <Link to={`/rooms/${room.id}`} key={room.id} className="flex items-center justify-between p-3 rounded-lg border hover:bg-accent">
+                  <div className="flex-1">
+                    <h3 className="font-medium ">{room.name}</h3>
                   </div>
-                </div>
+
+                  <span className="flex items-center gap-1 text-sm">
+                    Entrar <ArrowRight className="size-3" />
+                  </span>
+                </Link>
               ))}
             </CardContent>
           </Card>

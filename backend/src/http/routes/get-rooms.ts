@@ -1,6 +1,6 @@
 import type { FastifyInstance } from "fastify";
 
-import { count, eq } from "drizzle-orm";
+import { count, eq, desc, asc } from "drizzle-orm";
 import { db } from "../../db/connection.ts";
 import { schema } from "../../db/schema/index.ts";
 
@@ -16,7 +16,7 @@ export function getRoomsRoute(app: FastifyInstance) {
       .from(schema.rooms)
       .leftJoin(schema.questions, eq(schema.questions.roomId, schema.rooms.id))
       .groupBy(schema.rooms.id)
-      .orderBy(schema.rooms.name);
+      .orderBy(asc(schema.rooms.name));
 
     return rows.map((row) => ({
       ...row,

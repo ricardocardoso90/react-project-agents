@@ -12,13 +12,13 @@ type GetRoomsAPIResponse = {
 };
 
 export function CreateRoom() {
-  const { data, isLoading, isError, error } = useQuery({
+  const { data } = useQuery({
     queryKey: ["get-rooms"],
     queryFn: async () => {
       const response = await fetch("http://localhost:3333/rooms");
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
-      }
+      };
       const data: GetRoomsAPIResponse[] = await response.json();
       return data;
     },
@@ -38,9 +38,15 @@ export function CreateRoom() {
 
             <CardContent className="flex flex-col gap-3">
               {data?.map((room) => (
-                <Link to={`/rooms/${room.id}`} key={room.id} className="flex items-center justify-between p-3 rounded-lg border hover:bg-accent">
+                <Link
+                  key={room.id}
+                  to={`/rooms/${room.id}`}
+                  className="flex items-center justify-between p-3 rounded-lg border hover:bg-accent">
+
                   <div className="flex-1">
-                    <h3 className="font-medium ">{room.name}</h3>
+                    <h3 className="font-medium ">
+                      {room.name}
+                    </h3>
                   </div>
 
                   <span className="flex items-center gap-1 text-sm">

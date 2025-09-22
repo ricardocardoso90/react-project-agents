@@ -3,28 +3,11 @@ import { dayjs } from "@/lib/dayjs";
 import { ArrowRight } from "lucide-react";
 
 import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useRooms } from "@/http/use-rooms";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 
-type GetRoomsAPIResponse = {
-  id: string;
-  name: string;
-  questionsCount: number;
-  createdAt: number;
-};
-
 export function RoomList() {
-  const { data, isLoading } = useQuery({
-    queryKey: ["get-rooms"],
-    queryFn: async () => {
-      const response = await fetch("http://localhost:3333/rooms");
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      };
-      const data: GetRoomsAPIResponse[] = await response.json();
-      return data;
-    },
-  });
+  const { data, isLoading } = useRooms();
 
   return (
     <Card>

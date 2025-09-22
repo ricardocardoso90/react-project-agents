@@ -43,10 +43,12 @@ export function CreateRoom() {
                   to={`/rooms/${room.id}`}
                   className="flex items-center justify-between p-3 rounded-lg border hover:bg-accent">
 
-                  <div className="flex-1">
+                  <div className="flex-1 flex flex-col gap-1">
                     <h3 className="font-medium ">
                       {room.name}
                     </h3>
+
+                    <div className="flex items-center gap-2"></div>
                   </div>
 
                   <span className="flex items-center gap-1 text-sm">

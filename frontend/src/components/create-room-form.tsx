@@ -2,12 +2,13 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
 import { useForm } from "react-hook-form";
+import { Button } from "./ui/button";
+import { useCreateRoom } from "@/http/use-create-room";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
-import { Textarea } from "./ui/textarea";
-import { Button } from "./ui/button";
 
 const createRoomSchema = z.object({
   name: z.string().min(3, { message: "Inclua no mínimo 3 caracteres." }),
@@ -17,6 +18,8 @@ const createRoomSchema = z.object({
 type CreateRoomFormData = z.infer<typeof createRoomSchema>;
 
 export function CreateRoomForm() {
+  const { mutateAsync: createRoom } = useCreateRoom();
+
   const createRoomForm = useForm<CreateRoomFormData>({
     resolver: zodResolver(createRoomSchema),
     defaultValues: {
@@ -25,8 +28,9 @@ export function CreateRoomForm() {
     }
   });
 
-  function handleCreateRoom(data: CreateRoomFormData) {
-    console.log(data);
+  async function handleCreateRoom({ name, description }: CreateRoomFormData) {
+    await createRoom({ name, description });
+    createRoomForm.reset();
   };
 
   return (

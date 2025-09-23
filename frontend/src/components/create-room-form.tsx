@@ -25,7 +25,7 @@ export function CreateRoomForm() {
     defaultValues: {
       name: " ",
       description: " ",
-    }
+    },
   });
 
   async function handleCreateRoom({ name, description }: CreateRoomFormData) {
@@ -80,5 +80,5 @@ export function CreateRoomForm() {
         </Form>
       </CardContent>
     </Card>
-  )
+  );
 };

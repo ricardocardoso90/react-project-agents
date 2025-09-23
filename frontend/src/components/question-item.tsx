@@ -1,18 +1,18 @@
-import { dayjs } from '@/lib/dayjs'
-import { Bot, Loader2, MessageSquare } from 'lucide-react'
-import { Card, CardContent } from '@/components/ui/card'
+import { dayjs } from '@/lib/dayjs';
+import { Card, CardContent } from '@/components/ui/card';
+import { Bot, Loader2, MessageSquare } from 'lucide-react';
 
 interface Question {
   id: string
   question: string
-  answer?: string | null
   createdAt: string
+  answer?: string | null
   isGeneratingAnswer?: boolean
-}
+};
 
 interface QuestionItemProps {
   question: Question
-}
+};
 
 export function QuestionItem({ question }: QuestionItemProps) {
   return (
@@ -71,5 +71,5 @@ export function QuestionItem({ question }: QuestionItemProps) {
         </div>
       </CardContent>
     </Card>
-  )
-}
+  );
+};

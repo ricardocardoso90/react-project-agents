@@ -1,19 +1,18 @@
-import { ArrowLeft, Radio } from 'lucide-react'
-import { Link, Navigate, useParams } from 'react-router-dom'
-import { QuestionForm } from '@/components/question-form'
-// import { QuestionList } from '@/components/question-list'
-import { Button } from '@/components/ui/button'
+import { ArrowLeft, Radio } from 'lucide-react';
+import { Link, Navigate, useParams } from 'react-router-dom';
+import { QuestionForm } from '@/components/question-form';
+import { Button } from '@/components/ui/button';
 
 type RoomParams = {
   roomId: string
-}
+};
 
 export function Room() {
   const params = useParams<RoomParams>()
 
   if (!params.roomId) {
     return <Navigate replace to="/" />
-  }
+  };
 
   return (
     <div className="min-h-screen bg-zinc-950">
@@ -44,9 +43,7 @@ export function Room() {
         <div className="mb-8">
           <QuestionForm roomId={params.roomId} />
         </div>
-
-        {/* <QuestionList roomId={params.roomId} /> */}
       </div>
     </div>
-  )
-}
+  );
+};

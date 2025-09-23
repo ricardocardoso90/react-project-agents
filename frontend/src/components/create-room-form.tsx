@@ -1,10 +1,13 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { Input } from "./ui/input";
 import { useForm } from "react-hook-form";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
-import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { Button } from "./ui/button";
 
 const createRoomSchema = z.object({
   name: z.string().min(3, { message: "Inclua no mínimo 3 caracteres." }),
@@ -15,7 +18,11 @@ type CreateRoomFormData = z.infer<typeof createRoomSchema>;
 
 export function CreateRoomForm() {
   const createRoomForm = useForm<CreateRoomFormData>({
-    resolver: zodResolver(createRoomSchema)
+    resolver: zodResolver(createRoomSchema),
+    defaultValues: {
+      name: " ",
+      description: " ",
+    }
   });
 
   function handleCreateRoom(data: CreateRoomFormData) {
@@ -47,6 +54,24 @@ export function CreateRoomForm() {
                 )
               }}
             />
+
+            <FormField
+              control={createRoomForm.control}
+              name="description"
+              render={({ field }) => {
+                return (
+                  <FormItem>
+                    <FormLabel>Descrição</FormLabel>
+                    <FormControl>
+                      <Textarea {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )
+              }}
+            />
+
+            <Button type="submit" className="w-full">Criar sala</Button>
           </form>
         </Form>
       </CardContent>

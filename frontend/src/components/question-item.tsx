@@ -54,10 +54,8 @@ export function QuestionItem({ question }: QuestionItemProps) {
                       </span>
                     </div>
                   ) : (
-                    <p className="whitespace-pre-line text-sm leading-relaxed">
-                      {question.answer}
-                    </p>
-                  )}
+                    <p className="whitespace-pre-line text-sm leading-relaxed">{question.answer}</p>
+                  )};
                 </div>
               </div>
             </div>

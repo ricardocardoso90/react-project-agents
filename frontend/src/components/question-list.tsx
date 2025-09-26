@@ -6,7 +6,7 @@ interface QuestionListProps {
 };
 
 export function QuestionList({ roomId }: QuestionListProps) {
-  const { data } = useRoomQuestions(roomId)
+  const { data } = useRoomQuestions(roomId);
 
   return (
     <div className="space-y-6">

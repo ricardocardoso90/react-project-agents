@@ -1,7 +1,9 @@
-import { ArrowLeft, Radio } from 'lucide-react';
-import { Link, Navigate, useParams } from 'react-router-dom';
-import { QuestionForm } from '@/components/question-form';
 import { Button } from '@/components/ui/button';
+import { ArrowLeft, Radio } from 'lucide-react';
+
+import { QuestionForm } from '@/components/question-form';
+import { QuestionList } from '@/components/question-list';
+import { Link, Navigate, useParams } from 'react-router-dom';
 
 type RoomParams = {
   roomId: string
@@ -43,6 +45,8 @@ export function Room() {
         <div className="mb-8">
           <QuestionForm roomId={params.roomId} />
         </div>
+
+        <QuestionList roomId={params.roomId} />
       </div>
     </div>
   );

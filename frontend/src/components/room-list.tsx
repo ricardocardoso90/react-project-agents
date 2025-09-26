@@ -17,7 +17,7 @@ export function RoomList() {
       </CardHeader>
 
       <CardContent className="flex flex-col gap-3">
-        {isLoading && <p className="text-muted-foreground text-sm">Carregando salas...</p>};
+        {isLoading && <p className="text-muted-foreground text-sm">Carregando salas...</p>}
 
         {data?.map((room) => (
           <Link
@@ -44,7 +44,7 @@ export function RoomList() {
               Entrar <ArrowRight className="size-3" />
             </span>
           </Link>
-        ))};
+        ))}
 
       </CardContent>
     </Card>

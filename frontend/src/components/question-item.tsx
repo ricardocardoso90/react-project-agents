@@ -5,9 +5,8 @@ import { Bot, Loader2, MessageSquare } from 'lucide-react';
 interface Question {
   id: string
   question: string
+  answer?: string | null;
   createdAt: string
-  answer?: string | null
-  isGeneratingAnswer?: boolean
 };
 
 interface QuestionItemProps {
@@ -15,6 +14,8 @@ interface QuestionItemProps {
 };
 
 export function QuestionItem({ question }: QuestionItemProps) {
+  const isGenerating = !question.answer;
+
   return (
     <Card>
       <CardContent>
@@ -34,7 +35,7 @@ export function QuestionItem({ question }: QuestionItemProps) {
             </div>
           </div>
 
-          {(!!question.answer || question.isGeneratingAnswer) && (
+          {(!!question.answer || isGenerating) && (
             <div className="flex items-start space-x-3">
               <div className="flex-shrink-0">
                 <div className="flex size-8 items-center justify-center rounded-full bg-primary/10">
@@ -46,7 +47,7 @@ export function QuestionItem({ question }: QuestionItemProps) {
                   Resposta da IA
                 </p>
                 <div className="text-muted-foreground">
-                  {question.isGeneratingAnswer
+                  {isGenerating
                     ?
                     <div className="flex items-center space-x-2">
                       <Loader2 className="size-4 animate-spin text-primary" />

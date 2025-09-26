@@ -46,20 +46,21 @@ export function QuestionItem({ question }: QuestionItemProps) {
                   Resposta da IA
                 </p>
                 <div className="text-muted-foreground">
-                  {question.isGeneratingAnswer ? (
+                  {question.isGeneratingAnswer
+                    ?
                     <div className="flex items-center space-x-2">
                       <Loader2 className="size-4 animate-spin text-primary" />
                       <span className="text-primary text-sm italic">
                         Gerando resposta...
                       </span>
                     </div>
-                  ) : (
+                    :
                     <p className="whitespace-pre-line text-sm leading-relaxed">{question.answer}</p>
-                  )};
+                  };
                 </div>
               </div>
             </div>
-          )}
+          )};
 
           <div className="flex justify-end">
             <span className="text-muted-foreground text-xs">
